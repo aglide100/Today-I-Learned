@@ -14,11 +14,11 @@
 
 간단하게 살펴보면 아래와 같다.
 
-> 1. 텍스트 전처리(Text Preprocessing)
+> 1. 텍스트 전처리(`Text Preprocessing`)
 >    > 전처리 작업, 토큰화 작업 등 텍스트 정규화 작업을 수행하는 것이 텍스트 전처리 단계이다.
 
-> 2. 피처 벡터화(Feature Vectorization)
->    > 전처리된 텍스트에서 피처를 추출하고 여기에 벡터 값을 할당한다. 이러한 기법 중 대표적인 것은 BOW(Bag of words)와 Word2Vec가 있다.
+> 2. 피처 벡터화(`Feature Vectorization`)
+>    > 전처리된 텍스트에서 피처를 추출하고 여기에 벡터 값을 할당한다. 이러한 기법 중 대표적인 것은 `BOW(Bag of words)`와 `Word2Vec`가 있다.
 
 > 3. 머신러닝 모델링
 >    > 피처 벡터화된 데이터에 대하여 모델을 수립하고 학습/예츨을 하는 단계이다.
@@ -27,6 +27,8 @@
 
 ---
 
-https://wikidocs.net/21667
-https://cloud.google.com/learn/what-is-natural-language-processing?hl=ko
-https://bkshin.tistory.com/entry/NLP-1-%EC%9E%90%EC%97%B0%EC%96%B4-%EC%B2%98%EB%A6%ACNatural-Language-Processing%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80
+> https://wikidocs.net/21667
+
+> https://cloud.google.com/learn/what-is-natural-language-processing?hl=ko
+
+> https://bkshin.tistory.com/entry/NLP-1-%EC%9E%90%EC%97%B0%EC%96%B4-%EC%B2%98%EB%A6%ACNatural-Language-Processing%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80
