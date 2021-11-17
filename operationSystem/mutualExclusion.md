@@ -37,22 +37,53 @@ The execution if critical sections must be mutually exclusive
 
 실행시간이 가장 짧은 프로세스에 CPU를 할당하는 세마포 방법이다. 가장 짧은 평균 대기시간을 제공한다.
 
-```javascript
-    do {
+flag에서 `idle`, `want-in`, `in-CS` 상태로 나누며, CS진입을 1단계와 2단계로 나누어 2단계에 하나의 프로세스만 접근할 수 있다.
 
+```javascript
+    do { // 프로세스 n개의 상호 배제 문제
+        // 임계구역 진입시도
         flag[i] = 'want-in';
         while(turn != i) {
             if (flag[turn] = 'idle') {
                 turn = i
-                // exit process i
+                // i 프로세스 진입
             }
         }
 
+        // 임계구역 진입시도 2단계
         flag[i] = "in-CS";
         j = 0;
-        while((j < n) && (j == i || j != "in-CS")) {
+        while((j < n) && (j == i || flag[j] != "in-CS")) {
+            j = j + 1;
+        } while(j < n) // 만약 자신 외의 2단계 진입하는 프로세스가 있을 시 다시 1단계로 돌아간다.
 
+        flag[i] = idle;
+    }
+```
+
+# SW Solutions Lamport's bakery algorithm(램퍼더의 베이커리 알고리즘)
+
+우선순위(번호표)를 두어 마치 빵집과 같은 원리로 상호 배제를 해결한 알고리즘이다.
+
+번호를 통해 우선 순위를 선별하며 우선순위순으로 임계 구역에 진입한다.
+
+```javascript
+    do { // 프로세스 i, n개의 상호 배제 문제
+        choosing[i] = ture;
+        number[i] = max(number[0], number[1], ..., number[n-1]) +1;
+
+        choosing[i] = false; // 번호표 부여 완료
+
+        for (j = 0; j < n; j++ ) {
+            while(choosing[j]);
+
+            // 임계 구역을 아직 사용안한 것 중, 우선 순위를 비교 후 높은 번호를 사용하고, j가 임계구역에서 나올때 까지 대기한다.
+            while ((number[j] != 0) &&
+            ((number[j] < number[i]) || (number[j] == number[i] && j < i )));
         }
+    // CS 구역
+
+    number[i] = 0; // 임계 구역 사용 완료
     }
 ```
 
@@ -61,3 +92,5 @@ The execution if critical sections must be mutually exclusive
 > https://robodream.tistory.com/559
 
 > https://iredays.tistory.com/125
+
+> https://yoongrammer.tistory.com/61
